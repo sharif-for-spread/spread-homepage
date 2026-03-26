@@ -484,7 +484,7 @@
     .layer-label {
       position: absolute;
       font-family: var(--font);
-      font-size: clamp(11px, 1.2vw, 14px);
+      font-size: clamp(14px, 1.5vw, 18px);
       font-weight: 700;
       color: var(--dark);
       line-height: 1.35;
@@ -497,7 +497,7 @@
     .layer-label small {
       display: block;
       font-family: var(--font);
-      font-size: clamp(8px, 0.9vw, 10px);
+      font-size: clamp(10px, 1.1vw, 13px);
       font-weight: 700;
       color: var(--orange);
       letter-spacing: 0.12em;
@@ -983,7 +983,7 @@
         <img class="exploded-img layer-img-bot" id="layerBottom" src="layer_systems.svg" alt="Fragmented systems: PLM, ERP, CAD, MES, Docs, ALM, Sheets">
         <!-- Connector lines -->
         <svg class="exploded-connectors" viewBox="0 0 800 900" fill="none">
-          <g stroke="#ccc" stroke-width="1.2" stroke-dasharray="5 4" opacity="0.35">
+          <g stroke="#aaa" stroke-width="1.8" opacity="0.6">
             <path d="M280 240 C280 290, 260 320, 250 360"/>
             <path d="M400 250 C400 300, 400 330, 400 370"/>
             <path d="M520 240 C520 290, 540 320, 550 360"/>
@@ -1293,23 +1293,23 @@
       midImg.style.transform = `translateX(-50%)`;
       botImg.style.transform = `translateX(-50%) translateY(${spread}px)`;
 
-      // Phase 1: Bottom layer appears first (0-15%)
+      // Phase 1: Bottom layer appears first
       if (p > 0.02 && !phase.bot) {
         phase.bot = true;
         botImg.classList.add('visible');
         lblBot.classList.add('visible');
       }
-      // Phase 2: Middle layer (15-40%)
-      if (p > 0.15 && !phase.mid) {
+      // Phase 2: Middle layer — quickly after
+      if (p > 0.08 && !phase.mid) {
         phase.mid = true;
         midImg.classList.add('visible');
-        setTimeout(() => lblMid.classList.add('visible'), 200);
+        setTimeout(() => lblMid.classList.add('visible'), 150);
       }
-      // Phase 3: Top layer (35-60%)
-      if (p > 0.35 && !phase.top) {
+      // Phase 3: Top layer — before layers start collapsing
+      if (p > 0.15 && !phase.top) {
         phase.top = true;
         topImg.classList.add('visible');
-        setTimeout(() => lblTop.classList.add('visible'), 200);
+        setTimeout(() => lblTop.classList.add('visible'), 150);
       }
     }
 
