@@ -978,18 +978,37 @@
         <div class="layer-label lbl-mid" id="lblMid"><small>Middle Layer</small>Engineering<br>Intelligence Graph</div>
         <div class="layer-label lbl-bot" id="lblBot"><small>Bottom Layer</small>Fragmented<br>Systems</div>
         <!-- Three illustrated layers -->
-        <img class="exploded-img layer-img-top" id="layerTop" src="layer_screens.svg" alt="Product screens: Error Inspector, Product Explorer, Requirements Manager, AI Agent">
+        <img class="exploded-img layer-img-top" id="layerTop" src="layer_screens_v2.png" alt="Product screens: Error Inspector, Product Explorer, Requirements Manager, AI Agent">
         <img class="exploded-img layer-img-mid" id="layerMiddle" src="layer_graph.svg" alt="Engineering Intelligence Graph with connected nodes">
         <img class="exploded-img layer-img-bot" id="layerBottom" src="layer_systems.svg" alt="Fragmented systems: PLM, ERP, CAD, MES, Docs, ALM, Sheets">
-        <!-- Connector lines -->
+        <!-- Connector pipes -->
         <svg class="exploded-connectors" viewBox="0 0 800 900" fill="none">
-          <g stroke="#aaa" stroke-width="1.8" opacity="0.6">
-            <path d="M280 240 C280 290, 260 320, 250 360"/>
-            <path d="M400 250 C400 300, 400 330, 400 370"/>
-            <path d="M520 240 C520 290, 540 320, 550 360"/>
-            <path d="M280 560 C280 590, 270 610, 260 640"/>
-            <path d="M400 560 C400 590, 400 610, 400 640"/>
-            <path d="M520 560 C520 590, 530 610, 540 640"/>
+          <!-- Pipe shadow/depth layer -->
+          <g stroke="#d5d5d5" stroke-width="8" stroke-linecap="round" opacity="0.5">
+            <path d="M300 235 C300 270, 270 300, 260 355"/>
+            <path d="M400 240 C400 280, 400 310, 400 365"/>
+            <path d="M500 235 C500 270, 530 300, 540 355"/>
+            <path d="M290 555 C290 580, 270 610, 260 640"/>
+            <path d="M400 555 C400 580, 400 610, 400 640"/>
+            <path d="M510 555 C510 580, 530 610, 540 640"/>
+          </g>
+          <!-- Pipe highlight layer -->
+          <g stroke="#e8e8e8" stroke-width="5" stroke-linecap="round">
+            <path d="M300 235 C300 270, 270 300, 260 355"/>
+            <path d="M400 240 C400 280, 400 310, 400 365"/>
+            <path d="M500 235 C500 270, 530 300, 540 355"/>
+            <path d="M290 555 C290 580, 270 610, 260 640"/>
+            <path d="M400 555 C400 580, 400 610, 400 640"/>
+            <path d="M510 555 C510 580, 530 610, 540 640"/>
+          </g>
+          <!-- Pipe core (light center for 3D effect) -->
+          <g stroke="#f2f2f2" stroke-width="2" stroke-linecap="round">
+            <path d="M300 235 C300 270, 270 300, 260 355"/>
+            <path d="M400 240 C400 280, 400 310, 400 365"/>
+            <path d="M500 235 C500 270, 530 300, 540 355"/>
+            <path d="M290 555 C290 580, 270 610, 260 640"/>
+            <path d="M400 555 C400 580, 400 610, 400 640"/>
+            <path d="M510 555 C510 580, 530 610, 540 640"/>
           </g>
         </svg>
       </div>
