@@ -1,303 +1,254 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 550" width="100%" height="100%">
   <defs>
-    <style>
-      .line { fill: none; stroke: #555; stroke-width: 0.8; stroke-linecap: round; stroke-linejoin: round; }
-      .screen-bg { fill: #f5f5f5; stroke: #555; stroke-width: 0.8; stroke-linejoin: round; }
-      .screen-border { fill: none; stroke: #555; stroke-width: 1.2; stroke-linejoin: round; }
-      .orange { fill: #FF6F47; }
-      .orange-line { fill: none; stroke: #FF6F47; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
-      .dark { fill: #272727; }
-      .text { fill: #272727; font-family: sans-serif; font-size: 8px; }
-      .text-bold { fill: #272727; font-family: sans-serif; font-size: 10px; font-weight: bold; }
-      .text-small { fill: #272727; font-family: sans-serif; font-size: 6px; }
-      .person-skin { fill: #f0d0c0; stroke: #555; stroke-width: 0.8; }
-      .person-shirt-orange { fill: #FF6F47; stroke: #555; stroke-width: 0.8; }
-      .person-shirt-grey { fill: #d0d0d0; stroke: #555; stroke-width: 0.8; }
-      .person-pants { fill: #888; stroke: #555; stroke-width: 0.8; }
-      .person-hair { fill: #555; }
-      .shadow { fill: rgba(0,0,0,0.05); }
-    </style>
+    <!-- Person Template -->
+    <g id="person">
+      <ellipse cx="0" cy="-18" rx="4.5" ry="5.5" fill="#555"/>
+      <path d="M -5.5,-10 L 5.5,-10 L 4.5,6 L -4.5,6 Z" fill="#555"/>
+      <rect x="-3.5" y="6" width="2.5" height="9" rx="1" fill="#555"/>
+      <rect x="1" y="6" width="2.5" height="9" rx="1" fill="#555"/>
+    </g>
   </defs>
 
-  <!-- Main Left Screen (Error Inspector) -->
-  <g transform="translate(80, 60)">
-    <!-- Screen Body -->
-    <path class="screen-bg" d="M 250 0 L 250 200 C 250 205 245 210 240 212 L 10 350 C 5 353 0 350 0 345 L 0 145 C 0 140 5 135 10 132 L 240 2 C 245 -1 250 0 250 5 Z" />
-    <path class="screen-border" d="M 250 0 L 250 200 C 250 205 245 210 240 212 L 10 350 C 5 353 0 350 0 345 L 0 145 C 0 140 5 135 10 132 L 240 2 C 245 -1 250 0 250 5 Z" />
+  <!-- Shadows -->
+  <polygon points="100,300 273.2,200 288.2,208 115,308" fill="#000" opacity="0.06"/>
+  <polygon points="380,380 587.8,260 602.8,268 395,388" fill="#000" opacity="0.06"/>
+  <polygon points="660,400 833.2,300 848.2,308 675,408" fill="#000" opacity="0.06"/>
+  <polygon points="450,550 588.6,470 603.6,478 465,558" fill="#000" opacity="0.06"/>
+
+  <!-- Connector Pipes -->
+  <path d="M 187,250 C 187,360 400,380 460,415" fill="none" stroke="#ccc" stroke-width="4" stroke-linecap="round"/>
+  <path d="M 484,320 C 484,360 519,340 519,380" fill="none" stroke="#ccc" stroke-width="4" stroke-linecap="round"/>
+  <path d="M 747,350 C 747,410 650,340 570,360" fill="none" stroke="#ccc" stroke-width="4" stroke-linecap="round"/>
+  <path d="M 519,510 C 519,540 550,550 550,580" fill="none" stroke="#ccc" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- ========================================== -->
+  <!-- WINDOW 1: Error Inspector (Top-Left)       -->
+  <!-- ========================================== -->
+  <g id="window-error-inspector">
+    <!-- Casing Top -->
+    <polygon points="100,150 273.2,50 261.2,43 88,143" fill="#e8e8e8" stroke="#888" stroke-width="1" stroke-linejoin="round"/>
+    <!-- Casing Left -->
+    <polygon points="100,150 88,143 88,293 100,300" fill="#d8d8d8" stroke="#888" stroke-width="1" stroke-linejoin="round"/>
     
-    <!-- Screen Inner Bezel -->
-    <path class="line" d="M 242 10 L 242 198 L 12 338 L 12 150 Z" />
-    
-    <!-- Title Bar -->
-    <path class="line" d="M 242 30 L 12 170" />
-    <text class="text-bold" transform="matrix(0.866, 0.5, 0, 1, 20, 160)">Error Inspector</text>
-    
-    <!-- Top Right Icons -->
-    <path class="line" d="M 210 25 L 230 13 L 235 16 L 215 28 Z" />
-    <circle class="line" cx="222" cy="20" r="2" />
-    
-    <!-- Chart Area Background Grid -->
-    <g class="line" style="stroke-width: 0.3; stroke: #ccc;">
-      <line x1="30" y1="180" x2="230" y2="60" />
-      <line x1="30" y1="200" x2="230" y2="80" />
-      <line x1="30" y1="220" x2="230" y2="100" />
-      <line x1="30" y1="240" x2="230" y2="120" />
-      <line x1="30" y1="260" x2="230" y2="140" />
-      <line x1="30" y1="280" x2="230" y2="160" />
-      <line x1="30" y1="300" x2="230" y2="180" />
+    <!-- Front Face -->
+    <g transform="matrix(0.866, -0.5, 0, 1, 100, 150)">
+      <rect width="200" height="150" rx="4" fill="#f8f8f8" stroke="#888" stroke-width="1"/>
+      <!-- Header -->
+      <path d="M0,4 Q0,0 4,0 L196,0 Q200,0 200,4 L200,22 L0,22 Z" fill="#e8e8e8"/>
+      <line x1="0" y1="22" x2="200" y2="22" stroke="#888" stroke-width="1"/>
+      <circle cx="12" cy="11" r="3" fill="#fff" stroke="#888" stroke-width="1"/>
+      <circle cx="22" cy="11" r="3" fill="#fff" stroke="#888" stroke-width="1"/>
+      <circle cx="32" cy="11" r="3" fill="#fff" stroke="#888" stroke-width="1"/>
+      <text x="45" y="15" font-family="sans-serif" font-size="10" fill="#272727" font-weight="bold">Error Inspector</text>
       
-      <line x1="70" y1="155" x2="70" y2="275" />
-      <line x1="110" y1="130" x2="110" y2="250" />
-      <line x1="150" y1="105" x2="150" y2="225" />
-      <line x1="190" y1="80" x2="190" y2="200" />
-    </g>
-    
-    <!-- Y-Axis Labels -->
-    <text class="text-small" transform="matrix(0.866, 0.5, 0, 1, 15, 185)">505</text>
-    <text class="text-small" transform="matrix(0.866, 0.5, 0, 1, 15, 200)">API</text>
-    <text class="text-small" transform="matrix(0.866, 0.5, 0, 1, 15, 215)">201</text>
-    <text class="text-small" transform="matrix(0.866, 0.5, 0, 1, 15, 230)">100</text>
-    <text class="text-small" transform="matrix(0.866, 0.5, 0, 1, 15, 245)">60</text>
-    <text class="text-small" transform="matrix(0.866, 0.5, 0, 1, 15, 260)">5</text>
-    <text class="text-small" transform="matrix(0.866, 0.5, 0, 1, 15, 275)">6</text>
-    <text class="text-small" transform="matrix(0.866, 0.5, 0, 1, 15, 290)">4</text>
-    <text class="text-small" transform="matrix(0.866, 0.5, 0, 1, 15, 305)">0</text>
-    
-    <!-- X-Axis Labels -->
-    <text class="text-small" transform="matrix(0.866, 0.5, 0, 1, 70, 285)">1</text>
-    <text class="text-small" transform="matrix(0.866, 0.5, 0, 1, 110, 260)">2</text>
-    <text class="text-small" transform="matrix(0.866, 0.5, 0, 1, 150, 235)">3</text>
-    <text class="text-small" transform="matrix(0.866, 0.5, 0, 1, 190, 210)">4</text>
-    
-    <!-- Bar Charts -->
-    <!-- Bar 1 -->
-    <path class="orange" d="M 30 180 L 140 115 L 140 125 L 30 190 Z" />
-    <text class="text-small" transform="matrix(0.866, 0.5, 0, 1, 145, 115)">245</text>
-    <!-- Bar 2 -->
-    <path class="orange" d="M 30 195 L 180 105 L 180 115 L 30 205 Z" />
-    <text class="text-small" transform="matrix(0.866, 0.5, 0, 1, 185, 105)">182</text>
-    <!-- Bar 3 -->
-    <path class="orange" d="M 30 210 L 180 120 L 180 130 L 30 220 Z" />
-    <text class="text-small" transform="matrix(0.866, 0.5, 0, 1, 185, 120)">182</text>
-    <text class="text-small dark" transform="matrix(0.866, 0.5, 0, 1, 32, 218)">DATABASE CONNECTION</text>
-    <!-- Bar 4 -->
-    <path class="orange" d="M 30 225 L 190 130 L 190 140 L 30 235 Z" />
-    <text class="text-small" transform="matrix(0.866, 0.5, 0, 1, 195, 130)">97</text>
-    <text class="text-small dark" transform="matrix(0.866, 0.5, 0, 1, 32, 233)">DATABASE CONNECTION LOST</text>
-    <!-- Bar 5 -->
-    <path class="orange" d="M 30 240 L 190 145 L 190 155 L 30 250 Z" />
-    <text class="text-small" transform="matrix(0.866, 0.5, 0, 1, 195, 145)">97</text>
-    <text class="text-small dark" transform="matrix(0.866, 0.5, 0, 1, 32, 248)">INVALID INPUT</text>
-    <!-- Bar 6 -->
-    <path class="orange" d="M 30 255 L 160 178 L 160 188 L 30 265 Z" />
-    <text class="text-small" transform="matrix(0.866, 0.5, 0, 1, 165, 178)">402</text>
-    <!-- Bar 7 -->
-    <path class="orange" d="M 30 270 L 200 170 L 200 180 L 30 280 Z" />
-    <text class="text-small" transform="matrix(0.866, 0.5, 0, 1, 205, 170)">243</text>
-    <!-- Bar 8 -->
-    <path class="orange" d="M 30 285 L 100 245 L 100 255 L 30 295 Z" />
-    
-    <!-- Axes Lines -->
-    <path class="line" d="M 30 170 L 30 300 L 230 180" />
-    
-    <!-- Bottom Panel (Recent Critical Errors) -->
-    <path class="screen-bg" d="M 40 330 L 260 200 L 260 210 L 40 340 Z" />
-    <path class="screen-bg" d="M 40 330 L 260 200 L 220 180 L 0 310 Z" transform="translate(0, 10)" />
-    <text class="text-bold" transform="matrix(0.866, -0.5, 0.866, 0.5, 60, 330)">Recent Critical Errors</text>
-    <text class="text-small" transform="matrix(0.866, -0.5, 0.866, 0.5, 75, 335)">2023-10-27 14:00 Auth Failed</text>
-    <text class="text-small" transform="matrix(0.866, -0.5, 0.866, 0.5, 85, 340)">2023-10-27 14:15:23 - Payment Timeout</text>
-    <text class="text-small" transform="matrix(0.866, -0.5, 0.866, 0.5, 95, 345)">2023-10-27 - Gateway Timeout</text>
-    
-    <!-- Floating Error Box -->
-    <g transform="translate(190, 30)">
-      <path class="screen-bg" d="M 70 0 L 70 30 L 0 70 L 0 40 Z" />
-      <path class="line" d="M 65 5 L 65 28 L 5 63 L 5 40 Z" />
-      <text class="text-bold" transform="matrix(0.866, 0.5, 0, 1, 10, 45)">Err</text>
-      <path class="line" d="M 10 55 L 60 25" />
-      <path class="line" d="M 10 60 L 50 35" />
-      <circle class="line" cx="60" cy="15" r="2" />
+      <!-- Content: Status Bars -->
+      <text x="12" y="46" font-family="sans-serif" font-size="7" fill="#888">SYS-01</text>
+      <rect x="48" y="40" width="130" height="8" rx="2" fill="#FF6F47"/>
+      
+      <text x="12" y="64" font-family="sans-serif" font-size="7" fill="#888">DB-ERR</text>
+      <rect x="48" y="58" width="80" height="8" rx="2" fill="#E53935"/>
+      
+      <text x="12" y="82" font-family="sans-serif" font-size="7" fill="#888">NET-04</text>
+      <rect x="48" y="76" width="110" height="8" rx="2" fill="#FF6F47"/>
+      
+      <text x="12" y="100" font-family="sans-serif" font-size="7" fill="#888">AUTH-2</text>
+      <rect x="48" y="94" width="40" height="8" rx="2" fill="#E53935"/>
+      
+      <text x="12" y="118" font-family="sans-serif" font-size="7" fill="#888">MEM-01</text>
+      <rect x="48" y="112" width="140" height="8" rx="2" fill="#FF6F47"/>
+      
+      <text x="12" y="136" font-family="sans-serif" font-size="7" fill="#888">API-99</text>
+      <rect x="48" y="130" width="95" height="8" rx="2" fill="#FF6F47"/>
     </g>
   </g>
 
-  <!-- Middle Screen (Graphs) -->
-  <g transform="translate(500, 110)">
-    <path class="screen-bg" d="M 100 0 L 100 80 C 100 85 95 90 90 92 L 10 140 C 5 143 0 140 0 135 L 0 55 C 0 50 5 45 10 42 L 90 2 C 95 -1 100 0 100 5 Z" />
-    <path class="screen-border" d="M 100 0 L 100 80 C 100 85 95 90 90 92 L 10 140 C 5 143 0 140 0 135 L 0 55 C 0 50 5 45 10 42 L 90 2 C 95 -1 100 0 100 5 Z" />
-    <path class="line" d="M 95 10 L 95 82 L 5 135 L 5 62 Z" />
-    <path class="line" d="M 95 25 L 5 78" />
-    <text class="text-bold" transform="matrix(0.866, 0.5, 0, 1, 10, 70)">Err</text>
-    <path class="line" d="M 80 20 L 90 14 L 92 16 L 82 22 Z" />
+  <!-- ========================================== -->
+  <!-- WINDOW 2: Product Explorer (Top-Center)    -->
+  <!-- ========================================== -->
+  <g id="window-product-explorer">
+    <!-- Casing Top -->
+    <polygon points="380,200 587.8,80 575.8,73 368,193" fill="#e8e8e8" stroke="#888" stroke-width="1" stroke-linejoin="round"/>
+    <!-- Casing Left -->
+    <polygon points="380,200 368,193 368,373 380,380" fill="#d8d8d8" stroke="#888" stroke-width="1" stroke-linejoin="round"/>
     
-    <!-- Graph Area -->
-    <g class="line" style="stroke-width: 0.3; stroke: #ccc;">
-      <line x1="15" y1="90" x2="85" y2="50" />
-      <line x1="15" y1="105" x2="85" y2="65" />
-      <line x1="15" y1="120" x2="85" y2="80" />
-      <line x1="30" y1="80" x2="30" y2="110" />
-      <line x1="50" y1="70" x2="50" y2="100" />
-      <line x1="70" y1="60" x2="70" y2="90" />
+    <!-- Front Face -->
+    <g transform="matrix(0.866, -0.5, 0, 1, 380, 200)">
+      <rect width="240" height="180" rx="4" fill="#f8f8f8" stroke="#888" stroke-width="1"/>
+      <!-- Header -->
+      <path d="M0,4 Q0,0 4,0 L236,0 Q240,0 240,4 L240,22 L0,22 Z" fill="#e8e8e8"/>
+      <line x1="0" y1="22" x2="240" y2="22" stroke="#888" stroke-width="1"/>
+      <circle cx="12" cy="11" r="3" fill="#fff" stroke="#888" stroke-width="1"/>
+      <circle cx="22" cy="11" r="3" fill="#fff" stroke="#888" stroke-width="1"/>
+      <circle cx="32" cy="11" r="3" fill="#fff" stroke="#888" stroke-width="1"/>
+      <text x="45" y="15" font-family="sans-serif" font-size="10" fill="#272727" font-weight="bold">Product Explorer</text>
+      
+      <!-- Content: Network Graph -->
+      <!-- Lines -->
+      <line x1="120" y1="90" x2="60" y2="50" stroke="#aaa" stroke-width="1"/>
+      <line x1="120" y1="90" x2="180" y2="60" stroke="#aaa" stroke-width="1"/>
+      <line x1="120" y1="90" x2="50" y2="120" stroke="#aaa" stroke-width="1"/>
+      <line x1="120" y1="90" x2="110" y2="150" stroke="#aaa" stroke-width="1"/>
+      <line x1="120" y1="90" x2="190" y2="130" stroke="#aaa" stroke-width="1"/>
+      <line x1="60" y1="50" x2="50" y2="120" stroke="#aaa" stroke-width="1"/>
+      <line x1="180" y1="60" x2="190" y2="130" stroke="#aaa" stroke-width="1"/>
+      <line x1="180" y1="60" x2="150" y2="40" stroke="#aaa" stroke-width="1"/>
+      <line x1="190" y1="130" x2="210" y2="90" stroke="#aaa" stroke-width="1"/>
+      <line x1="180" y1="60" x2="210" y2="90" stroke="#aaa" stroke-width="1"/>
+      <line x1="50" y1="120" x2="110" y2="150" stroke="#aaa" stroke-width="1"/>
+      
+      <!-- Nodes -->
+      <circle cx="120" cy="90" r="8" fill="#FF6F47" stroke="#fff" stroke-width="2"/>
+      <circle cx="60" cy="50" r="6" fill="#FF6F47" stroke="#fff" stroke-width="2"/>
+      <circle cx="180" cy="60" r="6" fill="#FF6F47" stroke="#fff" stroke-width="2"/>
+      <circle cx="50" cy="120" r="6" fill="#FF6F47" stroke="#fff" stroke-width="2"/>
+      <circle cx="110" cy="150" r="6" fill="#FF6F47" stroke="#fff" stroke-width="2"/>
+      <circle cx="190" cy="130" r="6" fill="#FF6F47" stroke="#fff" stroke-width="2"/>
+      <circle cx="150" cy="40" r="5" fill="#FF6F47" stroke="#fff" stroke-width="1.5"/>
+      <circle cx="210" cy="90" r="5" fill="#FF6F47" stroke="#fff" stroke-width="1.5"/>
+      
+      <!-- Labels -->
+      <g transform="translate(165, 35)">
+        <rect width="45" height="14" fill="#fff" stroke="#888" stroke-width="0.5"/>
+        <text x="4" y="10" font-family="sans-serif" font-size="7" fill="#272727">Module A</text>
+      </g>
+      <g transform="translate(125, 95)">
+        <rect width="35" height="14" fill="#fff" stroke="#888" stroke-width="0.5"/>
+        <text x="6" y="10" font-family="sans-serif" font-size="7" fill="#272727">Core</text>
+      </g>
+      <g transform="translate(30, 130)">
+        <rect width="40" height="14" fill="#fff" stroke="#888" stroke-width="0.5"/>
+        <text x="4" y="10" font-family="sans-serif" font-size="7" fill="#272727">Network</text>
+      </g>
     </g>
-    
-    <!-- Graph Lines -->
-    <path class="line" d="M 15 100 Q 30 80 45 95 T 85 60" />
-    <path class="orange-line" d="M 15 110 Q 35 120 55 90 T 85 75" />
-    
-    <path class="line" d="M 20 120 L 35 112" />
-    <path class="line" d="M 70 95 L 85 87" />
   </g>
 
-  <!-- Right Screen (Data Tables) -->
-  <g transform="translate(620, 150)">
-    <path class="screen-bg" d="M 110 0 L 110 100 C 110 105 105 110 100 112 L 10 165 C 5 168 0 165 0 160 L 0 60 C 0 55 5 50 10 47 L 100 2 C 105 -1 110 0 110 5 Z" />
-    <path class="screen-border" d="M 110 0 L 110 100 C 110 105 105 110 100 112 L 10 165 C 5 168 0 165 0 160 L 0 60 C 0 55 5 50 10 47 L 100 2 C 105 -1 110 0 110 5 Z" />
-    <path class="line" d="M 105 10 L 105 102 L 5 160 L 5 68 Z" />
-    <path class="line" d="M 105 25 L 5 83" />
-    <text class="text-bold" transform="matrix(0.866, 0.5, 0, 1, 10, 75)">Err</text>
-    <path class="line" d="M 90 20 L 100 14 L 102 16 L 92 22 Z" />
+  <!-- ========================================== -->
+  <!-- WINDOW 3: Requirements Manager (Top-Right) -->
+  <!-- ========================================== -->
+  <g id="window-requirements">
+    <!-- Casing Top -->
+    <polygon points="660,250 833.2,150 821.2,143 648,243" fill="#e8e8e8" stroke="#888" stroke-width="1" stroke-linejoin="round"/>
+    <!-- Casing Left -->
+    <polygon points="660,250 648,243 648,393 660,400" fill="#d8d8d8" stroke="#888" stroke-width="1" stroke-linejoin="round"/>
     
-    <!-- Table Rows -->
-    <path class="line" d="M 10 95 L 15 92 L 15 95 Z" />
-    <path class="orange" d="M 20 90 L 45 75 L 45 80 L 20 95 Z" />
-    
-    <path class="line" d="M 10 105 L 15 102 L 15 105 Z" />
-    <path class="orange" d="M 20 100 L 90 60 L 90 65 L 20 105 Z" />
-    
-    <path class="line" d="M 10 115 L 15 112 L 15 115 Z" />
-    <path class="orange" d="M 20 110 L 70 80 L 70 85 L 20 115 Z" />
-    
-    <path class="line" d="M 10 125 L 15 122 L 15 125 Z" />
-    <path class="orange" d="M 20 120 L 95 78 L 95 83 L 20 125 Z" />
-    
-    <path class="line" d="M 10 140 L 15 137 L 15 140 Z" />
-    <path class="orange" d="M 20 135 L 40 123 L 40 128 L 20 140 Z" />
-    <path class="line" d="M 45 120 L 80 100 L 80 105 L 45 125 Z" />
+    <!-- Front Face -->
+    <g transform="matrix(0.866, -0.5, 0, 1, 660, 250)">
+      <rect width="200" height="150" rx="4" fill="#f8f8f8" stroke="#888" stroke-width="1"/>
+      <!-- Header -->
+      <path d="M0,4 Q0,0 4,0 L196,0 Q200,0 200,4 L200,22 L0,22 Z" fill="#e8e8e8"/>
+      <line x1="0" y1="22" x2="200" y2="22" stroke="#888" stroke-width="1"/>
+      <circle cx="12" cy="11" r="3" fill="#fff" stroke="#888" stroke-width="1"/>
+      <circle cx="22" cy="11" r="3" fill="#fff" stroke="#888" stroke-width="1"/>
+      <circle cx="32" cy="11" r="3" fill="#fff" stroke="#888" stroke-width="1"/>
+      <text x="45" y="15" font-family="sans-serif" font-size="10" fill="#272727" font-weight="bold">Requirements</text>
+      
+      <!-- Content: Data Table -->
+      <text x="10" y="35" font-family="sans-serif" font-size="7" fill="#888" font-weight="bold">STAT</text>
+      <text x="35" y="35" font-family="sans-serif" font-size="7" fill="#888" font-weight="bold">ID</text>
+      <text x="70" y="35" font-family="sans-serif" font-size="7" fill="#888" font-weight="bold">DESCRIPTION</text>
+      
+      <!-- Row 1 -->
+      <line x1="5" y1="40" x2="195" y2="40" stroke="#ddd" stroke-width="1"/>
+      <path d="M 12,48 L 15,51 L 20,45" fill="none" stroke="#FF6F47" stroke-width="1.5"/>
+      <rect x="35" y="46" width="20" height="4" fill="#ccc" rx="1"/>
+      <rect x="70" y="46" width="90" height="4" fill="#ccc" rx="1"/>
+      
+      <!-- Row 2 -->
+      <line x1="5" y1="58" x2="195" y2="58" stroke="#ddd" stroke-width="1"/>
+      <path d="M 12,66 L 15,69 L 20,63" fill="none" stroke="#FF6F47" stroke-width="1.5"/>
+      <rect x="35" y="64" width="25" height="4" fill="#ccc" rx="1"/>
+      <rect x="70" y="64" width="110" height="4" fill="#ccc" rx="1"/>
+      
+      <!-- Row 3 -->
+      <line x1="5" y1="76" x2="195" y2="76" stroke="#ddd" stroke-width="1"/>
+      <line x1="14" y1="84" x2="18" y2="84" stroke="#aaa" stroke-width="1.5"/>
+      <rect x="35" y="82" width="18" height="4" fill="#ccc" rx="1"/>
+      <rect x="70" y="82" width="80" height="4" fill="#ccc" rx="1"/>
+      
+      <!-- Row 4 -->
+      <line x1="5" y1="94" x2="195" y2="94" stroke="#ddd" stroke-width="1"/>
+      <path d="M 12,102 L 15,105 L 20,99" fill="none" stroke="#FF6F47" stroke-width="1.5"/>
+      <rect x="35" y="100" width="22" height="4" fill="#ccc" rx="1"/>
+      <rect x="70" y="100" width="100" height="4" fill="#ccc" rx="1"/>
+      
+      <!-- Row 5 -->
+      <line x1="5" y1="112" x2="195" y2="112" stroke="#ddd" stroke-width="1"/>
+      <path d="M 12,120 L 15,123 L 20,117" fill="none" stroke="#FF6F47" stroke-width="1.5"/>
+      <rect x="35" y="118" width="20" height="4" fill="#ccc" rx="1"/>
+      <rect x="70" y="118" width="85" height="4" fill="#ccc" rx="1"/>
+      
+      <!-- Row 6 -->
+      <line x1="5" y1="130" x2="195" y2="130" stroke="#ddd" stroke-width="1"/>
+      <line x1="14" y1="138" x2="18" y2="138" stroke="#aaa" stroke-width="1.5"/>
+      <rect x="35" y="136" width="24" height="4" fill="#ccc" rx="1"/>
+      <rect x="70" y="136" width="95" height="4" fill="#ccc" rx="1"/>
+    </g>
   </g>
 
-  <!-- Far Right Small Screen -->
-  <g transform="translate(750, 260)">
-    <path class="screen-bg" d="M 70 0 L 70 70 C 70 75 65 80 60 82 L 10 110 C 5 113 0 110 0 105 L 0 35 C 0 30 5 25 10 22 L 60 2 C 65 -1 70 0 70 5 Z" />
-    <path class="screen-border" d="M 70 0 L 70 70 C 70 75 65 80 60 82 L 10 110 C 5 113 0 110 0 105 L 0 35 C 0 30 5 25 10 22 L 60 2 C 65 -1 70 0 70 5 Z" />
-    <path class="line" d="M 65 10 L 65 72 L 5 105 L 5 42 Z" />
-    <path class="line" d="M 65 20 L 5 55" />
-    <text class="text-small" transform="matrix(0.866, 0.5, 0, 1, 10, 48)">Error List</text>
-    <path class="line" d="M 55 15 L 62 11 L 64 13 L 57 17 Z" />
+  <!-- ========================================== -->
+  <!-- WINDOW 4: AI Agent (Bottom-Right)          -->
+  <!-- ========================================== -->
+  <g id="window-ai-agent">
+    <!-- Casing Top -->
+    <polygon points="450,420 588.6,340 576.6,333 438,413" fill="#e8e8e8" stroke="#888" stroke-width="1" stroke-linejoin="round"/>
+    <!-- Casing Left -->
+    <polygon points="450,420 438,413 438,543 450,550" fill="#d8d8d8" stroke="#888" stroke-width="1" stroke-linejoin="round"/>
     
-    <text class="text-small" transform="matrix(0.866, 0.5, 0, 1, 10, 60)">Current</text>
-    <path class="orange" d="M 10 65 L 40 48 L 40 51 L 10 68 Z" />
-    <path class="line" d="M 45 45 L 60 37 L 60 40 L 45 48 Z" />
-    
-    <path class="orange" d="M 10 75 L 50 52 L 50 55 L 10 78 Z" />
-    <path class="line" d="M 55 49 L 60 46 L 60 49 L 55 52 Z" />
-    
-    <path class="orange" d="M 10 85 L 45 65 L 45 68 L 10 88 Z" />
-    <path class="line" d="M 50 62 L 60 56 L 60 59 L 50 65 Z" />
-    
-    <path class="orange" d="M 10 95 L 55 70 L 55 73 L 10 98 Z" />
+    <!-- Front Face -->
+    <g transform="matrix(0.866, -0.5, 0, 1, 450, 420)">
+      <rect width="160" height="130" rx="4" fill="#f8f8f8" stroke="#888" stroke-width="1"/>
+      <!-- Header -->
+      <path d="M0,4 Q0,0 4,0 L156,0 Q160,0 160,4 L160,22 L0,22 Z" fill="#e8e8e8"/>
+      <line x1="0" y1="22" x2="160" y2="22" stroke="#888" stroke-width="1"/>
+      <circle cx="12" cy="11" r="3" fill="#fff" stroke="#888" stroke-width="1"/>
+      <circle cx="22" cy="11" r="3" fill="#fff" stroke="#888" stroke-width="1"/>
+      <circle cx="32" cy="11" r="3" fill="#fff" stroke="#888" stroke-width="1"/>
+      <text x="45" y="15" font-family="sans-serif" font-size="10" fill="#272727" font-weight="bold">AI Agent</text>
+      
+      <!-- Content: Chat Bubbles -->
+      <!-- Bubble 1 (Left) -->
+      <rect x="10" y="35" width="90" height="22" rx="6" fill="#e0e0e0"/>
+      <rect x="18" y="42" width="60" height="3" fill="#aaa" rx="1"/>
+      <rect x="18" y="49" width="40" height="3" fill="#aaa" rx="1"/>
+      
+      <!-- Bubble 2 (Right) -->
+      <rect x="50" y="65" width="100" height="22" rx="6" fill="#FF6F47"/>
+      <rect x="58" y="72" width="70" height="3" fill="#fff" rx="1" opacity="0.9"/>
+      <rect x="58" y="79" width="50" height="3" fill="#fff" rx="1" opacity="0.9"/>
+      
+      <!-- Bubble 3 (Left) -->
+      <rect x="10" y="95" width="75" height="22" rx="6" fill="#e0e0e0"/>
+      <rect x="18" y="102" width="45" height="3" fill="#aaa" rx="1"/>
+      <rect x="18" y="109" width="25" height="3" fill="#aaa" rx="1"/>
+    </g>
   </g>
 
-  <!-- Connector Lines -->
-  <!-- From Error Inspector to Middle Screen -->
-  <path class="line" d="M 340 300 Q 360 310 350 320 T 370 320" />
-  <path class="line" d="M 370 320 L 365 315 M 370 320 L 365 325" />
+  <!-- ========================================== -->
+  <!-- PERSON FIGURES                             -->
+  <!-- ========================================== -->
   
-  <path class="line" d="M 550 230 Q 550 260 530 270 T 560 320" />
-  <path class="line" d="M 560 320 L 555 315 M 560 320 L 555 325" />
-  
-  <!-- From Middle Screen to Right Screen -->
-  <path class="line" d="M 680 290 Q 680 320 650 330 T 680 380" />
-  <path class="line" d="M 680 380 L 675 375 M 680 380 L 675 385" />
-  
-  <!-- From Right Screen to Far Right Screen -->
-  <path class="line" d="M 790 370 Q 790 400 750 410 T 700 400" />
-  <path class="line" d="M 700 400 L 705 395 M 700 400 L 705 405" />
-
-  <!-- People Figures -->
-  <!-- Person 1 (Sitting on laptop) -->
-  <g transform="translate(360, 230)">
-    <ellipse class="shadow" cx="15" cy="45" rx="10" ry="5" />
-    <!-- Laptop -->
-    <path class="screen-bg" d="M 15 30 L 30 20 L 35 25 L 20 35 Z" />
-    <path class="screen-bg" d="M 20 35 L 35 25 L 35 20 L 20 30 Z" />
-    <!-- Body -->
-    <path class="person-pants" d="M 10 30 L 15 40 L 20 45 L 25 40 L 20 30 Z" />
-    <path class="person-shirt-grey" d="M 5 15 L 15 10 L 20 20 L 10 30 Z" />
-    <path class="person-skin" d="M 15 15 L 25 25 L 20 30 L 10 20 Z" />
-    <!-- Head -->
-    <circle class="person-skin" cx="10" cy="10" r="5" />
-    <path class="person-hair" d="M 5 10 C 5 5 15 5 15 10 C 15 12 12 15 10 15 C 8 15 5 12 5 10 Z" />
-    <text class="text-small" transform="matrix(0.866, 0.5, 0, 1, 15, 55)">Sntdun</text>
+  <!-- Person 1: R&D -->
+  <g transform="translate(320, 260)">
+    <use href="#person" />
+    <text x="0" y="22" font-family="sans-serif" font-size="9" text-anchor="middle" fill="#555" font-weight="bold">R&amp;D</text>
   </g>
 
-  <!-- Person 2 (Standing, holding tablet) -->
-  <g transform="translate(440, 210)">
-    <ellipse class="shadow" cx="10" cy="75" rx="10" ry="5" />
-    <!-- Legs -->
-    <path class="person-pants" d="M 5 45 L 5 70 L 10 70 L 10 45 Z" />
-    <path class="person-pants" d="M 10 45 L 15 70 L 20 70 L 15 45 Z" />
-    <!-- Body -->
-    <path class="person-shirt-orange" d="M 5 20 L 15 15 L 20 45 L 5 45 Z" />
-    <!-- Arms -->
-    <path class="person-skin" d="M 5 25 L -5 35 L 0 40 L 10 30 Z" />
-    <path class="person-skin" d="M 15 20 L 25 30 L 20 35 L 10 25 Z" />
-    <!-- Tablet -->
-    <path class="screen-bg" d="M -5 35 L 5 30 L 10 35 L 0 40 Z" />
-    <!-- Head -->
-    <circle class="person-skin" cx="10" cy="10" r="5" />
-    <path class="person-hair" d="M 5 10 C 5 5 15 5 15 10 C 15 12 12 15 10 15 C 8 15 5 12 5 10 Z" />
-    <text class="text-small" transform="matrix(0.866, 0.5, 0, 1, -10, 80)">Etrauirt</text>
+  <!-- Person 2: Production -->
+  <g transform="translate(620, 300)">
+    <use href="#person" />
+    <text x="0" y="22" font-family="sans-serif" font-size="9" text-anchor="middle" fill="#555" font-weight="bold">Production</text>
   </g>
 
-  <!-- Person 3 (Standing, looking at screen) -->
-  <g transform="translate(320, 360)">
-    <ellipse class="shadow" cx="10" cy="75" rx="10" ry="5" />
-    <!-- Legs -->
-    <path class="person-pants" d="M 5 45 L 5 70 L 10 70 L 10 45 Z" />
-    <path class="person-pants" d="M 10 45 L 15 70 L 20 70 L 15 45 Z" />
-    <!-- Body -->
-    <path class="person-shirt-grey" d="M 5 20 L 15 15 L 20 45 L 5 45 Z" />
-    <!-- Arms -->
-    <path class="person-skin" d="M 5 25 L -5 35 L 0 40 L 10 30 Z" />
-    <!-- Head -->
-    <circle class="person-skin" cx="10" cy="10" r="5" />
-    <path class="person-hair" d="M 5 10 C 5 5 15 5 15 10 C 15 12 12 15 10 15 C 8 15 5 12 5 10 Z" />
-    <text class="text-small" transform="matrix(0.866, 0.5, 0, 1, 10, 85)">FF6F47</text>
+  <!-- Person 3: Aftersales -->
+  <g transform="translate(280, 420)">
+    <use href="#person" />
+    <text x="0" y="22" font-family="sans-serif" font-size="9" text-anchor="middle" fill="#555" font-weight="bold">Aftersales</text>
   </g>
 
-  <!-- Person 4 (Standing, holding paper) -->
-  <g transform="translate(530, 300)">
-    <ellipse class="shadow" cx="10" cy="75" rx="10" ry="5" />
-    <!-- Legs -->
-    <path class="person-pants" d="M 5 45 L 5 70 L 10 70 L 10 45 Z" />
-    <path class="person-pants" d="M 10 45 L 15 70 L 20 70 L 15 45 Z" />
-    <!-- Body -->
-    <path class="person-shirt-orange" d="M 5 20 L 15 15 L 20 45 L 5 45 Z" />
-    <!-- Arms -->
-    <path class="person-skin" d="M 15 20 L 25 30 L 20 35 L 10 25 Z" />
-    <!-- Paper -->
-    <path class="screen-bg" d="M 20 30 L 30 25 L 35 30 L 25 35 Z" />
-    <!-- Head -->
-    <circle class="person-skin" cx="10" cy="10" r="5" />
-    <path class="person-hair" d="M 5 10 C 5 5 15 5 15 10 C 15 12 12 15 10 15 C 8 15 5 12 5 10 Z" />
-    <text class="text-small" transform="matrix(0.866, 0.5, 0, 1, -20, 80)">Besemat</text>
-  </g>
-
-  <!-- Person 5 (Standing, holding tablet) -->
-  <g transform="translate(650, 340)">
-    <ellipse class="shadow" cx="10" cy="75" rx="10" ry="5" />
-    <!-- Legs -->
-    <path class="person-pants" d="M 5 45 L 5 70 L 10 70 L 10 45 Z" />
-    <path class="person-pants" d="M 10 45 L 15 70 L 20 70 L 15 45 Z" />
-    <!-- Body -->
-    <path class="person-shirt-grey" d="M 5 20 L 15 15 L 20 45 L 5 45 Z" />
-    <!-- Arms -->
-    <path class="person-skin" d="M 5 25 L -5 35 L 0 40 L 10 30 Z" />
-    <path class="person-skin" d="M 15 20 L 25 30 L 20 35 L 10 25 Z" />
-    <!-- Tablet -->
-    <path class="screen-bg" d="M -5 35 L 5 30 L 10 35 L 0 40 Z" />
-    <!-- Head -->
-    <circle class="person-skin" cx="10" cy="10" r="5" />
-    <path class="person-hair" d="M 5 10 C 5 5 15 5 15 10 C 15 12 12 15 10 15 C 8 15 5 12 5 10 Z" />
-    <text class="text-small" transform="matrix(0.866, 0.5, 0, 1, -20, 80)">Lepatment</text>
+  <!-- Person 4: Management -->
+  <g transform="translate(680, 480)">
+    <use href="#person" />
+    <text x="0" y="22" font-family="sans-serif" font-size="9" text-anchor="middle" fill="#555" font-weight="bold">Management</text>
   </g>
 
 </svg>
