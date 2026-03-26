@@ -441,51 +441,48 @@
       margin-bottom: 56px;
     }
     /* ── Exploded view ── */
-    .exploded-wrap {
+    /* ── Diagram with parallax ── */
+    .diagram-scene {
       position: relative;
-      height: 200vh;
+      width: clamp(360px, 58vw, 740px);
+      margin: 0 auto;
+      padding-bottom: 20px;
     }
-    .exploded-sticky {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-    .exploded-scene {
+    .diagram-layer {
       position: relative;
-      width: clamp(360px, 55vw, 720px);
-      height: 90vh;
-    }
-    .exploded-img {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80%;
-      height: auto;
-      will-change: transform;
+      width: 84%;
+      margin: 0 auto;
       opacity: 0;
-      transition: opacity 0.8s var(--ease-out-expo);
+      transform: translateY(28px);
+      transition: opacity 0.7s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+      will-change: transform;
     }
-    .exploded-img.visible { opacity: 1; }
-    .layer-img-top { top: 3%; z-index: 3; }
-    .layer-img-mid { top: 35%; z-index: 2; }
-    .layer-img-bot { top: 62%; z-index: 1; }
+    .diagram-layer.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .diagram-layer img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .diagram-layer-mid { transition-delay: 0.25s; }
+    .diagram-layer-top { transition-delay: 0.5s; }
     .layer-label {
-      position: absolute;
       font-family: var(--font);
       font-size: clamp(14px, 1.5vw, 18px);
       font-weight: 700;
       color: var(--dark);
       line-height: 1.35;
-      z-index: 4;
+      margin-bottom: 8px;
       opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+      transform: translateY(10px);
+      transition: opacity 0.6s var(--ease-out-expo), transform 0.6s var(--ease-out-expo);
     }
     .layer-label.visible { opacity: 1; transform: translateY(0); }
+    .diagram-layer-bot .layer-label { transition-delay: 0.1s; }
+    .diagram-layer-mid .layer-label { transition-delay: 0.35s; }
+    .diagram-layer-top .layer-label { transition-delay: 0.6s; }
     .layer-label small {
       display: block;
       font-family: var(--font);
@@ -496,9 +493,6 @@
       text-transform: uppercase;
       margin-bottom: 3px;
     }
-    .lbl-top { left: 1%; top: 5%; }
-    .lbl-mid { left: 1%; top: 38%; }
-    .lbl-bot { left: 1%; top: 66%; }
 
     /* ══════════════════════════════════════════
        HOW WE WORK
@@ -801,8 +795,8 @@
        RESPONSIVE
     ══════════════════════════════════════════ */
     @media (max-width: 900px) {
-      .exploded-wrap { height: 150vh; }
-      .exploded-scene { width: 90vw; }
+      .diagram-scene { width: 95vw; }
+      .diagram-layer { width: 95%; }
       .process-grid {
         grid-template-columns: 1fr 1fr;
         gap: 40px 0;
@@ -962,18 +956,21 @@
       <h2 class="section-heading reveal reveal-delay-1" style="max-width:640px;margin-left:auto;margin-right:auto">One intelligence layer connecting your fragmented systems to the products your teams actually need.</h2>
     </div>
   </div>
-  <div class="exploded-wrap" id="explodedWrap">
-    <div class="exploded-sticky">
-      <div class="exploded-scene" id="explodedScene">
-        <!-- Labels -->
-        <div class="layer-label lbl-top" id="lblTop"><small>Top Layer</small>Analytics · Agents ·<br>Products</div>
-        <div class="layer-label lbl-mid" id="lblMid"><small>Middle Layer</small>Engineering<br>Intelligence Graph</div>
-        <div class="layer-label lbl-bot" id="lblBot"><small>Bottom Layer</small>Fragmented<br>Systems</div>
-        <!-- Three illustrated layers -->
-        <img class="exploded-img layer-img-top" id="layerTop" src="layer_screens.svg" alt="Product screens: Error Inspector, Product Explorer, Requirements Manager, AI Agent">
-        <img class="exploded-img layer-img-mid" id="layerMiddle" src="layer_graph.svg" alt="Engineering Intelligence Graph with connected nodes">
-        <img class="exploded-img layer-img-bot" id="layerBottom" src="layer_systems.svg" alt="Fragmented systems: PLM, ERP, CAD, MES, Docs, ALM, Sheets">
-      </div>
+  <div class="diagram-scene" id="diagramScene">
+    <!-- Top: Product screens -->
+    <div class="diagram-layer diagram-layer-top" id="layerTop">
+      <div class="layer-label"><small>Top Layer</small>Analytics · Agents · Products</div>
+      <img src="layer_screens.svg" alt="Product screens: Error Inspector, Product Explorer, Requirements Manager, AI Agent">
+    </div>
+    <!-- Middle: Intelligence Graph -->
+    <div class="diagram-layer diagram-layer-mid" id="layerMiddle">
+      <div class="layer-label"><small>Middle Layer</small>Engineering Intelligence Graph</div>
+      <img src="layer_graph.svg" alt="Engineering Intelligence Graph with connected nodes">
+    </div>
+    <!-- Bottom: Fragmented Systems -->
+    <div class="diagram-layer diagram-layer-bot" id="layerBottom">
+      <div class="layer-label"><small>Bottom Layer</small>Fragmented Systems</div>
+      <img src="layer_systems.svg" alt="Fragmented systems: PLM, ERP, CAD, MES, Docs, ALM, Sheets">
     </div>
   </div>
 </section>
@@ -1245,60 +1242,47 @@
   scroll.addEventListener('mouseup', () => isDown = false);
   scroll.addEventListener('mousemove', (e) => { if (!isDown) return; e.preventDefault(); scroll.scrollLeft = scrollLeft - (e.pageX - scroll.offsetLeft - startX) * 1.5; });
 
-  // ── Exploded view: scroll-driven animation ──
+  // ── Diagram: fade-in on arrive + subtle parallax ──
   (function() {
-    const wrap = document.getElementById('explodedWrap');
-    if (!wrap) return;
-    const topImg = document.getElementById('layerTop');
-    const midImg = document.getElementById('layerMiddle');
-    const botImg = document.getElementById('layerBottom');
-    const lblTop = document.getElementById('lblTop');
-    const lblMid = document.getElementById('lblMid');
-    const lblBot = document.getElementById('lblBot');
-    let phase = { bot: false, mid: false, top: false };
+    const scene = document.getElementById('diagramScene');
+    if (!scene) return;
+    const layers = scene.querySelectorAll('.diagram-layer');
+    const labels = scene.querySelectorAll('.layer-label');
+    let revealed = false;
+
+    // Reveal layers + labels when section enters viewport
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting && !revealed) {
+          revealed = true;
+          layers.forEach(l => l.classList.add('visible'));
+          labels.forEach(l => l.classList.add('visible'));
+          revealObs.disconnect();
+        }
+      });
+    }, { threshold: 0.1 });
+    revealObs.observe(scene);
+
+    // Subtle parallax: layers move at slightly different speeds
     let animFrame;
-
-    function lerp(a, b, t) { return a + (b - a) * t; }
-    function easeOutQuart(t) { return 1 - Math.pow(1 - t, 4); }
-
-    function update() {
-      const rect = wrap.getBoundingClientRect();
+    function updateParallax() {
+      const rect = scene.getBoundingClientRect();
       const wh = window.innerHeight;
-      const raw = (-rect.top) / (rect.height - wh);
-      const p = Math.max(0, Math.min(1, raw));
-      const ep = easeOutQuart(p);
-
-      // Layers spread apart → come together
-      const spread = lerp(100, 0, ep);
-      topImg.style.transform = `translateX(-50%) translateY(${-spread}px)`;
-      midImg.style.transform = `translateX(-50%)`;
-      botImg.style.transform = `translateX(-50%) translateY(${spread}px)`;
-
-      // Phase 1: Bottom layer appears first
-      if (p > 0.02 && !phase.bot) {
-        phase.bot = true;
-        botImg.classList.add('visible');
-        lblBot.classList.add('visible');
-      }
-      // Phase 2: Middle layer — quickly after
-      if (p > 0.08 && !phase.mid) {
-        phase.mid = true;
-        midImg.classList.add('visible');
-        setTimeout(() => lblMid.classList.add('visible'), 150);
-      }
-      // Phase 3: Top layer — before layers start collapsing
-      if (p > 0.15 && !phase.top) {
-        phase.top = true;
-        topImg.classList.add('visible');
-        setTimeout(() => lblTop.classList.add('visible'), 150);
+      const center = (rect.top + rect.height / 2 - wh / 2) / wh;
+      // Top layer moves more, bottom moves less
+      const top = scene.querySelector('.diagram-layer-top');
+      const mid = scene.querySelector('.diagram-layer-mid');
+      const bot = scene.querySelector('.diagram-layer-bot');
+      if (top && top.classList.contains('visible')) {
+        top.style.transform = `translateY(${center * -18}px)`;
+        mid.style.transform = `translateY(${center * -6}px)`;
+        bot.style.transform = `translateY(${center * 6}px)`;
       }
     }
-
     window.addEventListener('scroll', () => {
       if (animFrame) cancelAnimationFrame(animFrame);
-      animFrame = requestAnimationFrame(update);
+      animFrame = requestAnimationFrame(updateParallax);
     }, { passive: true });
-    update();
   })();
 </script>
 </body>
